@@ -66,7 +66,7 @@ export const userFields: UserField[] = [
     validation: {
       required: "DOB is required"
     },
-    showInForm: false,
+    showInForm: false,  
     showInTable: false
   },
   {

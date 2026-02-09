@@ -1,8 +1,8 @@
-🚀 User Management CRUD Application
+## User Management CRUD Application
 
 React | TypeScript | Vite
 
-🔍 Project Overview
+## Project Overview
 
 This project is a User Management CRUD application developed using React, TypeScript, and Vite.
 
@@ -18,30 +18,30 @@ Delete users
 
 The code follows a parent–child component architecture, keeping App.tsx lightweight and separating business logic for better maintainability.
 
-🌐 Live Demo
+## Live Demo
 
-🚀 Deployed using Vercel
-🔗 (Add your deployment URL here)
+## Deployed using Vercel
+## (https://curd-react-liart.vercel.app/)
 
-🛠 Tech Stack
+## Tech Stack
 
-⚛️ React
+ React
 
-🟦 TypeScript
+ TypeScript
 
-⚡ Vite
+ Vite
 
-🎨 Material UI (MUI)
+ Material UI (MUI)
 
-📋 React Hook Form
+ React Hook Form
 
-🔔 React Toastify
+ React Toastify
 
-🧪 JSON Server (Mock API)
+ JSON Server (Mock API)
 
-☁️ Vercel (Deployment)
+ Vercel (Deployment)
 
-📁 Folder Structure
+## Folder Structure
 src/
  ├── api/
  │    └── userApi.ts        // API calls
@@ -56,8 +56,8 @@ src/
  ├── App.tsx                // Root component
  └── main.tsx
 
-✨ Features
-🧑 User CRUD Operations
+## Features
+## User CRUD Operations
 
 Create user
 
@@ -67,7 +67,7 @@ Edit user details
 
 Delete user
 
-✅ Form Validation
+## Form Validation
 
 Required field checks
 
@@ -79,7 +79,7 @@ Character length validation
 
 Inline error messages
 
-🔁 Duplicate Validation
+## Duplicate Validation
 
 Prevents duplicate entries for:
 
@@ -91,7 +91,7 @@ First name
 
 Errors are shown using toast notifications.
 
-📊 User Table
+## User Table
 
 Serial number column
 
@@ -101,11 +101,11 @@ Edit & delete actions
 
 Empty state message when no data is available
 
-🔔 Notifications
+## Notifications
 
 Success and error messages using React Toastify
 
-🧱 Architecture & Design
+## Architecture & Design
 
 Minimal logic inside App.tsx
 
@@ -117,15 +117,15 @@ Clear separation of concerns
 
 This design helps in easy scaling and future enhancements.
 
-⚙️ Local Setup Instructions
-1️⃣ Clone the Repository
+## Local Setup Instructions
+## Clone the Repository
 git clone <your-repository-url>
 cd user-management-app
 
-2️⃣ Install Dependencies
+## Install Dependencies
 npm install
 
-3️⃣ Start Mock Backend
+## Start Mock Backend
 npx json-server --watch db.json --port 3001
 
 
@@ -135,14 +135,14 @@ Sample db.json:
   "users": []
 }
 
-4️⃣ Run the Application
+## Run the Application
 npm run dev
 
-☁️ Deployment (Vercel)
+## Deployment (Vercel)
 
 The application is deployed using Vercel.
 
-🚀 Deployment Steps
+## Deployment Steps
 
 Push code to GitHub
 
@@ -154,7 +154,7 @@ Build Command
 
 npm run build
 
-📌 Backend & Data Handling Note
+## Backend & Data Handling Note
 
 This project is intended as a frontend-focused assignment.
 
@@ -182,7 +182,7 @@ API calls are expected to be connected to a real backend in a production environ
 
 This approach keeps the scope aligned with a frontend developer task and allows easy integration with any backend in the future.
 
-🧪 Local Development (Mock API)
+## Local Development (Mock API)
 
 For local testing only:
 
@@ -195,7 +195,7 @@ Sample db.json:
   "users": []
 }
 
-🌐 Deployment
+## Deployment
 
 Frontend is deployed using Vercel
 

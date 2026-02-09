@@ -10,7 +10,8 @@ import {
   Tooltip,
   TablePagination,
   TableSortLabel,
-  Box
+  Box,
+  TextField
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -22,15 +23,18 @@ interface Props {
   users: User[];
   onEdit: (user: User) => void;
   onDelete: (id: number) => void;
+  loading?: boolean;
 }
+
 
 export default function UserList({ users, onEdit, onDelete }: Props) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [orderBy, setOrderBy] = useState<keyof User>("firstName");
   const [order, setOrder] = useState<"asc" | "desc">("asc");
+  const [search, setSearch] = useState("");
 
-  // fields shown in table (schema-driven)
+  // fields shown in table
   const tableFields = userFields.filter(f => f.showInTable);
 
   const handleSort = (property: keyof User) => {
@@ -39,30 +43,70 @@ export default function UserList({ users, onEdit, onDelete }: Props) {
     setOrderBy(property);
   };
 
+  // 🔍 SEARCH FILTER
+  const filteredUsers = useMemo(() => {
+    const term = search.toLowerCase();
+
+    return users.filter(user =>
+      user.firstName?.toLowerCase().includes(term) ||
+      user.email?.toLowerCase().includes(term)
+    );
+  }, [users, search]);
+
+  // ↕️ SORT
   const sortedUsers = useMemo(() => {
-    return [...users].sort((a, b) => {
+    return [...filteredUsers].sort((a, b) => {
       const valA = a[orderBy] ?? "";
       const valB = b[orderBy] ?? "";
       return order === "asc"
         ? valA.toString().localeCompare(valB.toString())
         : valB.toString().localeCompare(valA.toString());
     });
-  }, [users, order, orderBy]);
+  }, [filteredUsers, order, orderBy]);
 
+  // 📄 PAGINATION
   const paginatedUsers = sortedUsers.slice(
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   );
 
-  if (!users.length) {
-    return <Box textAlign="center" p={2}>No data found</Box>;
+  if (!filteredUsers.length) {
+    return (
+      <Box textAlign="center" p={2}>
+        <TextField
+          label="Search by name or email"
+          size="small"
+          fullWidth
+          value={search}
+          onChange={e => {
+            setSearch(e.target.value);
+            setPage(0);
+          }}
+          sx={{ mb: 2 }}
+        />
+        No data found
+      </Box>
+    );
   }
 
   return (
     <Paper>
+      {/* 🔎 SEARCH BOX */}
+      <Box p={2}>
+        <TextField
+          label="Search by first name or email"
+          size="small"
+          fullWidth
+          value={search}
+          onChange={e => {
+            setSearch(e.target.value);
+            setPage(0);
+          }}
+        />
+      </Box>
+
       <TableContainer>
         <Table>
-          {/* TABLE HEADER */}
           <TableHead>
             <TableRow sx={{ backgroundColor: "#f0f4ff" }}>
               <TableCell sx={{ fontWeight: "bold" }}>S.NO</TableCell>
@@ -83,7 +127,6 @@ export default function UserList({ users, onEdit, onDelete }: Props) {
             </TableRow>
           </TableHead>
 
-          {/* TABLE BODY */}
           <TableBody>
             {paginatedUsers.map((user, index) => (
               <TableRow key={user.id} hover>
@@ -116,11 +159,10 @@ export default function UserList({ users, onEdit, onDelete }: Props) {
         </Table>
       </TableContainer>
 
-      {/* PAGINATION */}
       <TablePagination
         rowsPerPageOptions={[5, 10]}
         component="div"
-        count={users.length}
+        count={filteredUsers.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={(_, newPage) => setPage(newPage)}

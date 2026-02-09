@@ -29,6 +29,7 @@ export default function UserPage() {
     );
   }
 
+
   return (
     <Container>
       <Box
@@ -54,13 +55,14 @@ export default function UserPage() {
 
       <UserList
         users={users}
+        loading={loading}
         onEdit={user => {
           setEditingUser(user);
           setOpenForm(true);
         }}
         onDelete={deleteUser}
-
       />
+
 
       <UserDialog
         open={openForm}

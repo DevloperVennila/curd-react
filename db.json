@@ -1,3 +1,11 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": "3c0e",
+      "firstName": "Vairam",
+      "lastName": "S",
+      "email": "svairaprabhu1@gmail.com",
+      "phone": "7708843354"
+    }
+  ]
 }

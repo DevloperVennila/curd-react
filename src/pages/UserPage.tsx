@@ -60,7 +60,7 @@ export default function UserPage() {
           setEditingUser(user);
           setOpenForm(true);
         }}
-        onDelete={deleteUser}
+        onDelete={deleteUser}  
       />
 
 

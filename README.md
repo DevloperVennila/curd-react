@@ -1,73 +1,155 @@
-# React + TypeScript + Vite
+🚀 User Management CRUD Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React | TypeScript | Vite
 
-Currently, two official plugins are available:
+🔍 Project Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project is a User Management CRUD application developed using React, TypeScript, and Vite.
 
-## React Compiler
+The application allows users to:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Create new users
 
-## Expanding the ESLint configuration
+View user details
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Edit existing users
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Delete users
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+The code follows a parent–child component architecture, keeping App.tsx lightweight and separating business logic for better maintainability.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🌐 Live Demo
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🚀 Deployed using Vercel
+🔗 (Add your deployment URL here)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🛠 Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+⚛️ React
+
+🟦 TypeScript
+
+⚡ Vite
+
+🎨 Material UI (MUI)
+
+📋 React Hook Form
+
+🔔 React Toastify
+
+🧪 JSON Server (Mock API)
+
+☁️ Vercel (Deployment)
+
+📁 Folder Structure
+src/
+ ├── api/
+ │    └── userApi.ts        // API calls
+ ├── components/
+ │    ├── UserForm.tsx      // Create / Edit form
+ │    ├── UserList.tsx      // User table
+ │    └── UserDialog.tsx    // Dialog popup
+ ├── hooks/
+ │    └── useUsers.ts       // State & logic
+ ├── types/
+ │    └── user.ts           // Type definitions
+ ├── App.tsx                // Root component
+ └── main.tsx
+
+✨ Features
+🧑 User CRUD Operations
+
+Create user
+
+View users
+
+Edit user details
+
+Delete user
+
+✅ Form Validation
+
+Required field checks
+
+Email format validation
+
+Phone number must be 10 digits
+
+Character length validation
+
+Inline error messages
+
+🔁 Duplicate Validation
+
+Prevents duplicate entries for:
+
+Email
+
+Phone number
+
+First name
+
+Errors are shown using toast notifications.
+
+📊 User Table
+
+Serial number column
+
+Pagination (5 / 10 rows)
+
+Edit & delete actions
+
+Empty state message when no data is available
+
+🔔 Notifications
+
+Success and error messages using React Toastify
+
+🧱 Architecture & Design
+
+Minimal logic inside App.tsx
+
+Business logic handled using custom hooks
+
+UI split into reusable components
+
+Clear separation of concerns
+
+This design helps in easy scaling and future enhancements.
+
+⚙️ Local Setup Instructions
+1️⃣ Clone the Repository
+git clone <your-repository-url>
+cd user-management-app
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Start Mock Backend
+npx json-server --watch db.json --port 3001
+
+
+Sample db.json:
+
+{
+  "users": []
+}
+
+4️⃣ Run the Application
+npm run dev
+
+☁️ Deployment (Vercel)
+
+The application is deployed using Vercel.
+
+🚀 Deployment Steps
+
+Push code to GitHub
+
+Import repository in Vercel
+
+Use the following settings:
+
+Build Command
+
+npm run build

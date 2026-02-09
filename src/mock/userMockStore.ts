@@ -2,11 +2,13 @@ import type { User } from "../types/user";
 
 const STORAGE_KEY = "mock_users";
 
+// Read users from localStorage
 const getStoredUsers = (): User[] => {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
 };
 
+// Save users to localStorage
 const saveUsers = (users: User[]) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
 };
@@ -18,7 +20,7 @@ export const mockUserApi = {
 
   createUser: async (user: User): Promise<User> => {
     const users = getStoredUsers();
-    const newUser = { ...user, id: Date.now() };
+    const newUser = { ...user, id: Date.now() }; // no isDeleted
     users.push(newUser);
     saveUsers(users);
     return newUser;
@@ -26,7 +28,7 @@ export const mockUserApi = {
 
   updateUser: async (id: number, data: User): Promise<User> => {
     const users = getStoredUsers().map(user =>
-      user.id === id ? { ...data, id } : user
+      user.id === id ? { ...user, ...data } : user
     );
     saveUsers(users);
     return { ...data, id };

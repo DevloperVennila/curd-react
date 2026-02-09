@@ -56,8 +56,8 @@ export const userFields: UserField[] = [
         message: "Phone must be 10 digits"
       }
     },
-    showInForm: true,
-    showInTable: true
+    showInForm: false,
+    showInTable: false
   },
   {
     name: "dob",

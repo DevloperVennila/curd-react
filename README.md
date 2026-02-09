@@ -153,3 +153,64 @@ Use the following settings:
 Build Command
 
 npm run build
+
+📌 Backend & Data Handling Note
+
+This project is intended as a frontend-focused assignment.
+
+A mock backend (JSON Server) is used only for local development to simulate API behavior.
+
+No backend is deployed as part of this project.
+
+The goal is to demonstrate:
+
+UI design
+
+Component architecture
+
+State management
+
+Form validation
+
+CRUD flow handling on the frontend
+
+During deployment:
+
+The application runs as a static frontend.
+
+API calls are expected to be connected to a real backend in a production environment.
+
+This approach keeps the scope aligned with a frontend developer task and allows easy integration with any backend in the future.
+
+🧪 Local Development (Mock API)
+
+For local testing only:
+
+npx json-server --watch db.json --port 3001
+
+
+Sample db.json:
+
+{
+  "users": []
+}
+
+🌐 Deployment
+
+Frontend is deployed using Vercel
+
+Backend services are intentionally excluded
+
+This is by design for frontend evaluation purposes
+
+## Mock Data Support (No Backend Required)
+
+If the backend API is unavailable or not configured, the application
+automatically falls back to a frontend mock data store.
+
+- CRUD operations work fully without an API
+- Data is persisted using browser localStorage
+- No code changes are required in UI components
+
+This allows the application to function as a complete frontend-only solution
+while remaining backend-ready.

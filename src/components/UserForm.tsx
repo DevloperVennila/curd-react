@@ -3,7 +3,17 @@ import { TextField, Button, Box } from "@mui/material";
 import { userFields } from "../schemas/userSchema";
 import type { User } from "../types/user";
 
-export default function UserForm({ onSubmit, defaultValues }: any) {
+interface UserFormProps {
+  onSubmit: (data: User) => void;
+  defaultValues?: User;
+  loading?: boolean;
+}
+
+export default function UserForm({
+  onSubmit,
+  defaultValues,
+  loading = false
+}: UserFormProps) {
   const {
     register,
     handleSubmit,
@@ -28,17 +38,21 @@ export default function UserForm({ onSubmit, defaultValues }: any) {
             error={!!error}
             helperText={error?.message as string}
             slotProps={{
-              inputLabel: field.type === "date"
-                ? { shrink: true }
-                : undefined
+              inputLabel:
+                field.type === "date" ? { shrink: true } : undefined
             }}
           />
-
         );
       })}
 
-      <Button type="submit" variant="contained" fullWidth sx={{ mt: 2 }}>
-        Save User
+      <Button
+        type="submit"
+        variant="contained"
+        fullWidth
+        sx={{ mt: 2 }}
+        disabled={loading}
+      >
+        {loading ? "Saving..." : "Save User"}
       </Button>
     </Box>
   );

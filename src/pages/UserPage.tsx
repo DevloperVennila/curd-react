@@ -1,4 +1,4 @@
-import { Container, Box, Button } from "@mui/material";
+import { Container, Box, Button, CircularProgress } from "@mui/material";
 import UserList from "../components/UserList";
 import UserDialog from "../components/UserDialog";
 import { useUsers } from "../hooks/useUsers";
@@ -8,11 +8,26 @@ export default function UserPage() {
     users,
     editingUser,
     openForm,
+    loading,
+    initialLoading,
     setOpenForm,
     setEditingUser,
     submitUser,
     deleteUser
   } = useUsers();
+
+  if (initialLoading) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        height="100vh"
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <Container>
@@ -23,9 +38,11 @@ export default function UserPage() {
         my={3}
       >
         <h2>User Management</h2>
+
         <Button
           variant="contained"
           size="small"
+          disabled={loading}
           onClick={() => {
             setEditingUser(null);
             setOpenForm(true);
@@ -42,11 +59,13 @@ export default function UserPage() {
           setOpenForm(true);
         }}
         onDelete={deleteUser}
+
       />
 
       <UserDialog
         open={openForm}
         editingUser={editingUser}
+        loading={loading}
         onClose={() => setOpenForm(false)}
         onSubmit={submitUser}
       />

@@ -16,7 +16,7 @@ export const userFields: UserField[] = [
     type: "text",
     validation: {
       required: "First name is required",
-      maxLength: { value: 10, message: "Max 10 characters" }
+      maxLength: { value: 100, message: "Max 10 characters" }
     },
     showInForm: true,
     showInTable: true
@@ -66,8 +66,8 @@ export const userFields: UserField[] = [
     validation: {
       required: "DOB is required"
     },
-    showInForm: false,
-    showInTable: false
+    showInForm: true,
+    showInTable: true
   },
   {
     name: "Address",
@@ -76,7 +76,7 @@ export const userFields: UserField[] = [
     validation: {
       required: "Address is required"
     },
-    showInForm: false,
-    showInTable: false
+    showInForm: true,
+    showInTable: true
   }
 ];

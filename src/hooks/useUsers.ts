@@ -8,9 +8,19 @@ export function useUsers() {
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [openForm, setOpenForm] = useState(false);
 
+  const [loading, setLoading] = useState(false); // create/update/delete
+  const [initialLoading, setInitialLoading] = useState(true); // fetch list
+
+  /* Load Users */
   const loadUsers = async () => {
-    const res = await api.getUsers();
-    setUsers(res.data);
+    try {
+      const res = await api.getUsers();
+      setUsers(res.data);
+    } catch {
+      toast.error("Failed to load users");
+    } finally {
+      setInitialLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -23,18 +33,22 @@ export function useUsers() {
 
       if (user.email === data.email) return "Email already exists";
       if (user.phone === data.phone) return "Phone already exists";
-      if (user.firstName === data.firstName) return "First name already exists";
+      if (user.firstName === data.firstName)
+        return "First name already exists";
     }
     return null;
   };
 
   const submitUser = async (data: User) => {
+    if (loading) return;
+
     const error = checkDuplicate(data);
     if (error) {
       toast.error(error);
       return;
     }
 
+    setLoading(true);
     try {
       editingUser
         ? await api.updateUser(editingUser.id!, data)
@@ -46,19 +60,32 @@ export function useUsers() {
       loadUsers();
     } catch {
       toast.error("Something went wrong");
+    } finally {
+      setLoading(false);
     }
   };
 
   const deleteUser = async (id: number) => {
-    await api.deleteUser(id);
-    toast.success("User deleted");
-    loadUsers();
+    if (loading) return;
+
+    setLoading(true);
+    try {
+      await api.deleteUser(id);
+      toast.success("User deleted");
+      loadUsers();
+    } catch {
+      toast.error("Delete failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return {
     users,
     editingUser,
     openForm,
+    loading,
+    initialLoading,
     setOpenForm,
     setEditingUser,
     submitUser,

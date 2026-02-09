@@ -66,8 +66,8 @@ export const userFields: UserField[] = [
     validation: {
       required: "DOB is required"
     },
-    showInForm: true,
-    showInTable: true
+    showInForm: false,
+    showInTable: false
   },
   {
     name: "Address",
@@ -76,7 +76,7 @@ export const userFields: UserField[] = [
     validation: {
       required: "Address is required"
     },
-    showInForm: true,
-    showInTable: true
+    showInForm: false,
+    showInTable: false
   }
 ];
